@@ -1,11 +1,3 @@
-# 🎓 Complete Frontend Development Guide for Students
-
-**Welcome to Professional Frontend Development!**
-
-This guide will teach you how to write code like engineers at top tech companies. You'll learn industry-standard practices that are used at Google, Facebook, Amazon, and startups worldwide. As a beginner, these concepts might seem complex at first, but with practice, they will become second nature.
-
----
-
 ## 📖 Table of Contents
 1. [What is Atomic Design?](#-1-what-is-atomic-design)
 2. [Why Atomic Design Matters](#-2-why-atomic-design-matters)
