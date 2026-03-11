@@ -9,3 +9,6 @@ export { default as SearchBar } from './SearchBar';
 export { default as CategoryFilter } from './CategoryFilter';
 export { default as SortDropdown } from './SortDropdown';
 export { default as CartItem } from './CartItem';
+export { default as PasswordInput } from './PasswordInput';
+export { default as SocialLoginButton } from './SocialLoginButton';
+export { default as Divider } from './Divider';

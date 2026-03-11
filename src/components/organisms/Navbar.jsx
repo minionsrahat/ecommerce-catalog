@@ -9,11 +9,14 @@
  * - onCartClick: Function to open cart drawer
  */
 
-import { Link } from 'react-router-dom';
-import { ShoppingCart, Storefront } from '@mui/icons-material';
-import { Badge } from '../atoms';
+import { Link, useNavigate } from 'react-router-dom';
+import { ShoppingCart, Storefront, Logout } from '@mui/icons-material';
+import { Badge, Button } from '../atoms';
+import { useAuth } from '../../context/AuthContext';
 
 const Navbar = ({ cartItemCount, onCartClick }) => {
+  const { user, isAuthenticated, logout } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
@@ -53,18 +56,64 @@ const Navbar = ({ cartItemCount, onCartClick }) => {
             </Link>
           </div>
 
-          {/* Cart Icon */}
-          <button
-            onClick={onCartClick}
-            className="relative p-2 hover:bg-gray-100 rounded-full transition-colors"
-          >
-            <ShoppingCart className="text-gray-700" sx={{ fontSize: 28 }} />
-            {cartItemCount > 0 && (
-              <div className="absolute -top-1 -right-1">
-                <Badge variant="danger">{cartItemCount}</Badge>
-              </div>
-            )}
-          </button>
+          {/* Actions: Auth & Cart */}
+          <div className="flex items-center gap-4">
+            {/* Auth Buttons/User Profile */}
+            <div className="flex items-center gap-2 border-r border-gray-200 pr-4 mr-2">
+              {isAuthenticated ? (
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2">
+                    <img
+                      src={user?.avatar || 'https://via.placeholder.com/32'}
+                      alt={user?.name}
+                      className="w-8 h-8 rounded-full border border-primary-200 shadow-sm"
+                    />
+                    <span className="text-sm font-medium text-gray-700 hidden lg:block">
+                      {user?.name}
+                    </span>
+                  </div>
+                  <button
+                    onClick={logout}
+                    className="p-1.5 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-full transition-colors"
+                    title="Logout"
+                  >
+                    <Logout sx={{ fontSize: 20 }} />
+                  </button>
+                </div>
+              ) : (
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => navigate('/login')}
+                  >
+                    Login
+                  </Button>
+                  <Button
+                    variant="primary"
+                    size="sm"
+                    className="hidden sm:block"
+                    onClick={() => navigate('/signup')}
+                  >
+                    Sign Up
+                  </Button>
+                </div>
+              )}
+            </div>
+
+            {/* Cart Icon */}
+            <button
+              onClick={onCartClick}
+              className="relative p-2 hover:bg-gray-100 rounded-full transition-colors"
+            >
+              <ShoppingCart className="text-gray-700" sx={{ fontSize: 28 }} />
+              {cartItemCount > 0 && (
+                <div className="absolute -top-1 -right-1">
+                  <Badge variant="danger">{cartItemCount}</Badge>
+                </div>
+              )}
+            </button>
+          </div>
         </div>
       </div>
     </nav>

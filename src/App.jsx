@@ -10,8 +10,9 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import { CartProvider, useCart } from './context/CartContext';
+import { AuthProvider } from './context/AuthContext';
 import { Navbar, CartDrawer, Footer } from './components/organisms';
-import { Landing, Products, ProductDetail, About, Contact, Checkout } from './pages';
+import { Landing, Products, ProductDetail, About, Contact, Checkout, Login, Signup } from './pages';
 
 // Inner component that uses useNavigate (must be inside Router)
 function AppRoutes() {
@@ -46,6 +47,8 @@ function AppRoutes() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
       </main>
 
@@ -67,11 +70,13 @@ function AppRoutes() {
 
 function App() {
   return (
-    <CartProvider>
-      <Router>
-        <AppRoutes />
-      </Router>
-    </CartProvider>
+    <AuthProvider>
+      <CartProvider>
+        <Router>
+          <AppRoutes />
+        </Router>
+      </CartProvider>
+    </AuthProvider>
   );
 }
 

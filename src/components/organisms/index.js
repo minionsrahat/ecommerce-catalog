@@ -9,3 +9,5 @@ export { default as ProductGrid } from './ProductGrid';
 export { default as CartDrawer } from './CartDrawer';
 export { default as Hero } from './Hero';
 export { default as Footer } from './Footer';
+export { default as LoginForm } from './LoginForm';
+export { default as SignupForm } from './SignupForm';

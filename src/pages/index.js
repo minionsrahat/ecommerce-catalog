@@ -10,3 +10,5 @@ export { default as ProductDetail } from './ProductDetail';
 export { default as About } from './About';
 export { default as Contact } from './Contact';
 export { default as Checkout } from './Checkout';
+export { default as Login } from './Login';
+export { default as Signup } from './Signup';
